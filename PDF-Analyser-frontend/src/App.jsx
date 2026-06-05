@@ -84,7 +84,7 @@ export default function App() {
       </div>
 
       {/* Input */}
-      <div style={{ background:card, border:`1px solid ${border}`, borderRadius:16, padding:"26px 30px", marginBottom:36 }}>
+      <div style={{ background:card, border:`1px solid ${border}`, borderRadius:16, padding:"26px 30px", marginBottom:36, maxWidth:700, margin:"0 auto 36px auto" }}>
         <div style={{ fontWeight:700, fontSize:"0.95rem", color:text, marginBottom:16 }}>Enter PDF URL</div>
         <div style={{ display:"flex", gap:12, marginBottom:12 }}>
           <div style={{ flex:1, display:"flex", alignItems:"center", gap:10, border:`1px solid ${border}`, borderRadius:10, padding:"0 16px", background:bg }}>
@@ -122,7 +122,7 @@ export default function App() {
             </button>
           </div>
 
-          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+          <div style={{ display:"flex", flexDirection:"column", gap:14, maxWidth:700, margin:"0 auto" }}>
             {CARDS.map((c) => (
               <div key={c.key}
                 style={{ background: d?"#1e293b":c.color, border:`1px solid ${border}`, borderRadius:14, padding:"20px 24px", display:"flex", alignItems:"flex-start" }}>
