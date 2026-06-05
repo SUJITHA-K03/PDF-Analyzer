@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
-const BACKEND_URL = "http://localhost:8080";
+const BACKEND_URL = "https://pdf-analyzer-213a.onrender.com";
 
 const CARDS = [
   { key: "documentType", label: "Document Type", color: "#eef2ff", iconColor: "#4f46e5" },
