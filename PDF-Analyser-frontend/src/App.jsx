@@ -17,6 +17,13 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState("");
 
+  const bg     = "#f8f9ff";
+  const card   = "#ffffff";
+  const border = "#e5e7eb";
+  const text   = "#111827";
+  const muted  = "#6b7280";
+  const accent = "#4f46e5";
+
   const analyse = async () => {
     if (!pdfUrl.trim()) { setError("Please enter a PDF URL!"); return; }
     setLoading(true); setError(""); setResult(null);
@@ -50,13 +57,6 @@ export default function App() {
     a.click();
   };
 
-const bg     = "#f8f9ff";
-const card   = "#ffffff";
-const border = "#e5e7eb";
-const text   = "#111827";
-const muted  = "#6b7280";
-const accent = "#4f46e5";
-
   return (
     <div style={{ minHeight:"100vh", fontFamily:"'Inter',sans-serif", background:bg, color:text, padding:"40px 52px" }}>
 
@@ -69,7 +69,6 @@ const accent = "#4f46e5";
             <div style={{ fontSize:"0.7rem", color:muted }}>AI Powered Analysis</div>
           </div>
         </div>
-        
       </div>
 
       {/* Page Title */}
@@ -79,7 +78,7 @@ const accent = "#4f46e5";
       </div>
 
       {/* Input */}
-      <div style={{ background:card, border:`1px solid ${border}`, borderRadius:16, padding:"26px 30px", marginBottom:36, maxWidth:700, margin:"0 auto 36px auto" }}>
+      <div style={{ background:card, border:`1px solid ${border}`, borderRadius:16, padding:"26px 30px", maxWidth:700, margin:"0 auto 36px auto" }}>
         <div style={{ fontWeight:700, fontSize:"0.95rem", color:text, marginBottom:16 }}>Enter PDF URL</div>
         <div style={{ display:"flex", gap:12, marginBottom:12 }}>
           <div style={{ flex:1, display:"flex", alignItems:"center", gap:10, border:`1px solid ${border}`, borderRadius:10, padding:"0 16px", background:bg }}>
@@ -95,7 +94,11 @@ const accent = "#4f46e5";
           </button>
         </div>
         <div style={{ fontSize:"0.78rem", color:muted }}>ℹ️ Make sure the PDF is publicly accessible.</div>
-
+        {loading && (
+          <div style={{ textAlign:"center", color:muted, fontSize:"0.85rem", marginTop:12 }}>
+            ⏳ This may take 30-60 seconds on first request...
+          </div>
+        )}
         {error && (
           <div style={{ marginTop:12, background:"#fef2f2", border:"1px solid #fecaca", borderRadius:10, padding:"12px 16px", color:"#dc2626", fontSize:"0.85rem", fontWeight:500 }}>
             ⚠️ {error}
@@ -105,11 +108,11 @@ const accent = "#4f46e5";
 
       {/* Results */}
       {result && (
-        <div>
+        <div style={{ maxWidth:700, margin:"0 auto" }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
             <div>
               <div style={{ fontWeight:800, fontSize:"1.4rem", color:text }}>Analysis Result</div>
-              <div style={{ fontSize:"0.83rem", color:muted, marginTop:3 }}>AI-generated summary and key insights from your document.</div>
+              <div style={{ fontSize:"0.83rem", color:muted, marginTop:3 }}>AI-generated summary and key insights.</div>
             </div>
             <button onClick={download}
               style={{ display:"flex", alignItems:"center", gap:8, padding:"10px 20px", border:`1px solid ${border}`, borderRadius:10, background:card, cursor:"pointer", fontSize:"0.85rem", color:accent, fontWeight:600 }}>
@@ -117,13 +120,13 @@ const accent = "#4f46e5";
             </button>
           </div>
 
-          <div style={{ display:"flex", flexDirection:"column", gap:14, maxWidth:700, margin:"0 auto" }}>
+          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
             {CARDS.map((c) => (
               <div key={c.key}
-                style={{ background: d?"#1e293b":c.color, border:`1px solid ${border}`, borderRadius:14, padding:"20px 24px", display:"flex", alignItems:"flex-start" }}>
+                style={{ background:c.color, border:`1px solid ${border}`, borderRadius:14, padding:"20px 24px", display:"flex", alignItems:"flex-start" }}>
                 <div style={{ width:4, background:c.iconColor, borderRadius:"4px 0 0 4px", alignSelf:"stretch", marginRight:20, flexShrink:0 }} />
                 <div style={{ flex:1 }}>
-                  <div style={{ fontSize:"0.72rem", color: d?"#94a3b8":c.iconColor, fontWeight:700, textTransform:"uppercase", letterSpacing:"1px", marginBottom:8 }}>
+                  <div style={{ fontSize:"0.72rem", color:c.iconColor, fontWeight:700, textTransform:"uppercase", letterSpacing:"1px", marginBottom:8 }}>
                     {c.label}
                   </div>
                   <div style={{ fontWeight: c.key==="summary"||c.key==="keyTakeaway" ? 500 : 700, fontSize:"1rem", color:text, lineHeight:1.7 }}>
