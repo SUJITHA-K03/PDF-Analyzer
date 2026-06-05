@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.nav-item:hover { background: rgba(79,70,229,0.08); }
+
+.nav-active {
+  background: #eef2ff !important;
+  color: #4f46e5 !important;
+}
+
+.analyse-btn { transition: all 0.2s; }
+.analyse-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.hist-row:hover { background: rgba(79,70,229,0.06); }
+
+.result-card { animation: fadeUp 0.4s ease both; }
+
+.dl-btn:hover { background: #eef2ff; }
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
