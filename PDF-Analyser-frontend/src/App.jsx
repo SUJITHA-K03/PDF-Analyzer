@@ -16,7 +16,6 @@ export default function App() {
   const [result, setResult]   = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState("");
-  const [dark, setDark]       = useState(false);
 
   const analyse = async () => {
     if (!pdfUrl.trim()) { setError("Please enter a PDF URL!"); return; }
@@ -51,13 +50,12 @@ export default function App() {
     a.click();
   };
 
-  const d      = dark;
-  const bg     = d ? "#0f172a" : "#f8f9ff";
-  const card   = d ? "#1e293b" : "#ffffff";
-  const border = d ? "#334155" : "#e5e7eb";
-  const text   = d ? "#f1f5f9" : "#111827";
-  const muted  = d ? "#94a3b8" : "#6b7280";
-  const accent = "#4f46e5";
+const bg     = "#f8f9ff";
+const card   = "#ffffff";
+const border = "#e5e7eb";
+const text   = "#111827";
+const muted  = "#6b7280";
+const accent = "#4f46e5";
 
   return (
     <div style={{ minHeight:"100vh", fontFamily:"'Inter',sans-serif", background:bg, color:text, padding:"40px 52px" }}>
@@ -71,10 +69,7 @@ export default function App() {
             <div style={{ fontSize:"0.7rem", color:muted }}>AI Powered Analysis</div>
           </div>
         </div>
-        <button onClick={() => setDark(!d)}
-          style={{ background:"none", border:`1px solid ${border}`, borderRadius:10, padding:"8px 14px", cursor:"pointer", fontSize:"1rem", color:muted }}>
-          {d ? "☀️" : "🌙"}
-        </button>
+        
       </div>
 
       {/* Page Title */}
