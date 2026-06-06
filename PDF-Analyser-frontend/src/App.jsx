@@ -4,25 +4,18 @@ import "./App.css";
 const BACKEND_URL = "https://pdf-analyzer-213a.onrender.com";
 
 const CARDS = [
-  { key: "documentType", label: "Document Type", color: "#eef2ff", iconColor: "#4f46e5" },
+  { key: "documentType", label: "Document Type", color: "#fff7ed", iconColor: "#ea580c" },
   { key: "title",        label: "Title",         color: "#f0fdf4", iconColor: "#16a34a" },
-  { key: "authors",      label: "Authors",       color: "#fffbeb", iconColor: "#d97706" },
+  { key: "authors",      label: "Authors",       color: "#eff6ff", iconColor: "#2563eb" },
   { key: "summary",      label: "Summary",       color: "#fdf4ff", iconColor: "#9333ea" },
-  { key: "keyTakeaway",  label: "Key Takeaway",  color: "#f0f9ff", iconColor: "#0284c7" },
+  { key: "keyTakeaway",  label: "Key Takeaway",  color: "#fff1f2", iconColor: "#e11d48" },
 ];
 
 export default function App() {
-  const [pdfUrl, setPdfUrl]   = useState("");
-  const [result, setResult]   = useState(null);
+  const [pdfUrl, setPdfUrl] = useState("");
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState("");
-
-  const bg     = "#f8f9ff";
-  const card   = "#ffffff";
-  const border = "#e5e7eb";
-  const text   = "#111827";
-  const muted  = "#6b7280";
-  const accent = "#4f46e5";
+  const [error, setError] = useState("");
 
   const analyse = async () => {
     if (!pdfUrl.trim()) { setError("Please enter a PDF URL!"); return; }
@@ -58,87 +51,111 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight:"100vh", fontFamily:"'Inter',sans-serif", background:bg, color:text, padding:"40px 52px" }}>
+    <div style={{ minHeight:"100vh", background:"linear-gradient(135deg, #0f0c29, #302b63, #24243e)", fontFamily:"'Inter',sans-serif", padding:"0" }}>
 
-      {/* Header */}
-      <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:36 }}>
-        <div style={{ display:"flex", alignItems:"center", gap:12 }}>
-          <div style={{ width:42, height:42, background:"#eef2ff", borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.3rem" }}>📄</div>
-          <div>
-            <div style={{ fontWeight:800, fontSize:"1.2rem", color:text }}>PDF Analyzer</div>
-            <div style={{ fontSize:"0.7rem", color:muted }}>AI Powered Analysis</div>
-          </div>
+      {/* Navbar */}
+      <div style={{ display:"flex", alignItems:"center", gap:10, padding:"20px 48px", borderBottom:"1px solid rgba(255,255,255,0.08)" }}>
+        <div style={{ width:36, height:36, background:"linear-gradient(135deg,#f97316,#ec4899)", borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.1rem" }}>✦</div>
+        <div>
+          <span style={{ fontWeight:800, fontSize:"1.1rem", color:"#fff" }}>PDF </span>
+          <span style={{ fontWeight:800, fontSize:"1.1rem", color:"#f97316" }}>Analyzer</span>
         </div>
+        <div style={{ marginLeft:12, fontSize:"0.72rem", color:"rgba(255,255,255,0.45)" }}>AI powered insights from your documents</div>
       </div>
 
-      {/* Page Title */}
-      <div style={{ marginBottom:36 }}>
-        <h1 style={{ fontSize:"2rem", fontWeight:800, color:text, marginBottom:6 }}>Analyze PDF Document</h1>
-        <p style={{ color:muted, fontSize:"0.9rem" }}>Enter a publicly accessible PDF URL and get AI-powered insights in seconds.</p>
-      </div>
+      {/* Hero */}
+      <div style={{ display:"flex", alignItems:"center", justifyContent:"center", padding:"60px 48px 40px", gap:60 }}>
 
-      {/* Input */}
-      <div style={{ background:card, border:`1px solid ${border}`, borderRadius:16, padding:"26px 30px", maxWidth:700, margin:"0 auto 36px auto" }}>
-        <div style={{ fontWeight:700, fontSize:"0.95rem", color:text, marginBottom:16 }}>Enter PDF URL</div>
-        <div style={{ display:"flex", gap:12, marginBottom:12 }}>
-          <div style={{ flex:1, display:"flex", alignItems:"center", gap:10, border:`1px solid ${border}`, borderRadius:10, padding:"0 16px", background:bg }}>
-            <span style={{ color:muted }}>🔗</span>
-            <input value={pdfUrl} onChange={e => setPdfUrl(e.target.value)}
-              onKeyDown={e => e.key==="Enter" && analyse()}
-              placeholder="https://example.com/document.pdf"
-              style={{ flex:1, border:"none", outline:"none", background:"transparent", fontSize:"0.9rem", padding:"14px 0", color:text }} />
+        {/* Left */}
+        <div style={{ maxWidth:560, flex:1 }}>
+          <div style={{ fontSize:"0.72rem", color:"#f97316", fontWeight:700, letterSpacing:"2px", marginBottom:16 }}>✦ AI DOCUMENT ANALYSIS</div>
+          <h1 style={{ fontSize:"3rem", fontWeight:900, color:"#fff", lineHeight:1.2, marginBottom:16 }}>
+            Analyze any <span style={{ color:"#f97316" }}>PDF</span>
+          </h1>
+          <p style={{ color:"rgba(255,255,255,0.55)", fontSize:"1rem", lineHeight:1.7, marginBottom:32 }}>
+            Paste a publicly accessible PDF URL and let AI extract key insights for you.
+          </p>
+
+          {/* Input */}
+          <div style={{ display:"flex", gap:12, marginBottom:12 }}>
+            <div style={{ flex:1, display:"flex", alignItems:"center", gap:10, background:"rgba(255,255,255,0.07)", border:"1px solid rgba(255,255,255,0.12)", borderRadius:12, padding:"0 16px", backdropFilter:"blur(10px)" }}>
+              <span style={{ color:"rgba(255,255,255,0.4)", fontSize:"1rem" }}>🔗</span>
+              <input
+                value={pdfUrl}
+                onChange={e => setPdfUrl(e.target.value)}
+                onKeyDown={e => e.key === "Enter" && analyse()}
+                placeholder="https://arxiv.org/pdf/1706.03762"
+                style={{ flex:1, border:"none", outline:"none", background:"transparent", fontSize:"0.9rem", padding:"16px 0", color:"#fff" }}
+              />
+              {pdfUrl && (
+                <span onClick={() => setPdfUrl("")} style={{ color:"rgba(255,255,255,0.4)", cursor:"pointer", fontSize:"1.1rem" }}>×</span>
+              )}
+            </div>
+            <button
+              onClick={analyse}
+              disabled={loading}
+              style={{ padding:"16px 28px", background: loading ? "rgba(249,115,22,0.5)" : "linear-gradient(135deg,#f97316,#ec4899)", color:"#fff", border:"none", borderRadius:12, fontWeight:700, fontSize:"0.9rem", cursor: loading ? "not-allowed" : "pointer", whiteSpace:"nowrap", boxShadow:"0 4px 20px rgba(249,115,22,0.4)" }}>
+              {loading ? "⏳ Analysing..." : "✦ Analyze Document"}
+            </button>
           </div>
-          <button onClick={analyse} disabled={loading}
-            style={{ padding:"14px 28px", background: loading?"#a5b4fc":accent, color:"#fff", border:"none", borderRadius:10, fontWeight:700, fontSize:"0.9rem", cursor: loading?"not-allowed":"pointer", display:"flex", alignItems:"center", gap:8, whiteSpace:"nowrap" }}>
-            {loading ? "⏳ Analysing..." : "✨ Analyze Document"}
-          </button>
+
+          <div style={{ fontSize:"0.75rem", color:"rgba(255,255,255,0.35)", display:"flex", alignItems:"center", gap:6 }}>
+            🛡 The PDF must be publicly accessible. Your data is secure and not stored.
+          </div>
+
+          {loading && (
+            <div style={{ marginTop:12, fontSize:"0.82rem", color:"rgba(249,115,22,0.8)" }}>
+              ⏳ First request may take 30-60 seconds...
+            </div>
+          )}
+
+          {error && (
+            <div style={{ marginTop:12, background:"rgba(239,68,68,0.15)", border:"1px solid rgba(239,68,68,0.3)", borderRadius:10, padding:"12px 16px", color:"#fca5a5", fontSize:"0.85rem" }}>
+              ⚠️ {error}
+            </div>
+          )}
         </div>
-        <div style={{ fontSize:"0.78rem", color:muted }}>ℹ️ Make sure the PDF is publicly accessible.</div>
-        {loading && (
-          <div style={{ textAlign:"center", color:muted, fontSize:"0.85rem", marginTop:12 }}>
-            ⏳ This may take 30-60 seconds on first request...
+
+        {/* Right illustration */}
+        <div style={{ flexShrink:0, width:220, height:220, position:"relative", display:"flex", alignItems:"center", justifyContent:"center" }}>
+          <div style={{ width:160, height:200, background:"rgba(255,255,255,0.06)", border:"1px solid rgba(255,255,255,0.12)", borderRadius:16, display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:12, backdropFilter:"blur(10px)" }}>
+            <div style={{ background:"linear-gradient(135deg,#f97316,#ec4899)", borderRadius:8, padding:"8px 18px", fontWeight:800, color:"#fff", fontSize:"1rem" }}>PDF</div>
+            {[80,60,70].map((w,i) => (
+              <div key={i} style={{ height:8, width:`${w}%`, background:"rgba(255,255,255,0.15)", borderRadius:4 }} />
+            ))}
           </div>
-        )}
-        {error && (
-          <div style={{ marginTop:12, background:"#fef2f2", border:"1px solid #fecaca", borderRadius:10, padding:"12px 16px", color:"#dc2626", fontSize:"0.85rem", fontWeight:500 }}>
-            ⚠️ {error}
-          </div>
-        )}
+          <div style={{ position:"absolute", bottom:10, right:10, width:52, height:52, background:"linear-gradient(135deg,#f97316,#ec4899)", borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", fontSize:"1.4rem", boxShadow:"0 4px 20px rgba(249,115,22,0.5)" }}>🔍</div>
+        </div>
       </div>
 
       {/* Results */}
       {result && (
-        <div style={{ maxWidth:700, margin:"0 auto" }}>
+        <div style={{ maxWidth:700, margin:"0 auto", padding:"0 48px 60px" }}>
           <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:20 }}>
             <div>
-              <div style={{ fontWeight:800, fontSize:"1.4rem", color:text }}>Analysis Result</div>
-              <div style={{ fontSize:"0.83rem", color:muted, marginTop:3 }}>AI-generated summary and key insights.</div>
+              <div style={{ fontWeight:800, fontSize:"1.3rem", color:"#fff" }}>Analysis Result</div>
+              <div style={{ fontSize:"0.82rem", color:"rgba(255,255,255,0.45)", marginTop:3 }}>AI-generated insights from your document.</div>
             </div>
             <button onClick={download}
-              style={{ display:"flex", alignItems:"center", gap:8, padding:"10px 20px", border:`1px solid ${border}`, borderRadius:10, background:card, cursor:"pointer", fontSize:"0.85rem", color:accent, fontWeight:600 }}>
-              ⬇️ Download Result
+              style={{ display:"flex", alignItems:"center", gap:8, padding:"10px 20px", border:"1px solid rgba(255,255,255,0.15)", borderRadius:10, background:"rgba(255,255,255,0.07)", cursor:"pointer", fontSize:"0.85rem", color:"#f97316", fontWeight:600 }}>
+              ⬇️ Download
             </button>
           </div>
 
-          <div style={{ display:"flex", flexDirection:"column", gap:14 }}>
+          <div style={{ display:"flex", flexDirection:"column", gap:12 }}>
             {CARDS.map((c) => (
-              <div key={c.key}
-                style={{ background:c.color, border:`1px solid ${border}`, borderRadius:14, padding:"20px 24px", display:"flex", alignItems:"flex-start" }}>
-                <div style={{ width:4, background:c.iconColor, borderRadius:"4px 0 0 4px", alignSelf:"stretch", marginRight:20, flexShrink:0 }} />
+              <div key={c.key} style={{ background:"rgba(255,255,255,0.05)", border:"1px solid rgba(255,255,255,0.1)", borderRadius:14, padding:"20px 24px", display:"flex", alignItems:"flex-start", backdropFilter:"blur(10px)" }}>
+                <div style={{ width:4, background:c.iconColor, borderRadius:4, alignSelf:"stretch", marginRight:20, flexShrink:0 }} />
                 <div style={{ flex:1 }}>
-                  <div style={{ fontSize:"0.72rem", color:c.iconColor, fontWeight:700, textTransform:"uppercase", letterSpacing:"1px", marginBottom:8 }}>
+                  <div style={{ fontSize:"0.7rem", color:c.iconColor, fontWeight:700, textTransform:"uppercase", letterSpacing:"1px", marginBottom:8 }}>
                     {c.label}
                   </div>
-                  <div style={{ fontWeight: c.key==="summary"||c.key==="keyTakeaway" ? 500 : 700, fontSize:"1rem", color:text, lineHeight:1.7 }}>
+                  <div style={{ fontWeight: c.key==="summary"||c.key==="keyTakeaway" ? 400 : 600, fontSize:"0.95rem", color:"rgba(255,255,255,0.85)", lineHeight:1.7 }}>
                     {result[c.key] || "N/A"}
                   </div>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div style={{ textAlign:"center", marginTop:28, fontSize:"0.78rem", color:muted }}>
-            🔒 Your data is secure. We do not store any documents.
           </div>
         </div>
       )}
